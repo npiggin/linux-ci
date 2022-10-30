@@ -62,7 +62,7 @@ perf_callchain_kernel(struct perf_callchain_entry_ctx *entry, struct pt_regs *re
 
 		if (next_sp == sp + STACK_INT_FRAME_SIZE &&
 		    validate_sp_size(sp, current, STACK_INT_FRAME_SIZE) &&
-		    fp[STACK_INT_FRAME_MARKER_LONGS] == STACK_FRAME_REGS_MARKER) {
+		    *(u32 *)(sp + STACK_INT_FRAME_MARKER) == STACK_FRAME_REGS_MARKER) {
 			/*
 			 * This looks like an interrupt frame for an
 			 * interrupt that occurred in the kernel

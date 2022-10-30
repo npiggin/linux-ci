@@ -78,7 +78,7 @@ _ASM_NOKPROBE_SYMBOL(system_call_vectored_\name)
 	std	r12,_CCR(r1)
 	std	r3,ORIG_GPR3(r1)
 	LOAD_REG_IMMEDIATE(r11, STACK_FRAME_REGS_MARKER)
-	std	r11,STACK_INT_FRAME_MARKER(r1)		/* "regs" marker */
+	stw	r11,STACK_INT_FRAME_MARKER(r1)		/* "regs" marker */
 	/* Calling convention has r3 = regs, r4 = orig r0 */
 	addi	r3,r1,STACK_INT_FRAME_REGS
 	mr	r4,r0
@@ -257,7 +257,7 @@ END_BTB_FLUSH_SECTION
 	std	r12,_CCR(r1)
 	std	r3,ORIG_GPR3(r1)
 	LOAD_REG_IMMEDIATE(r11, STACK_FRAME_REGS_MARKER)
-	std	r11,STACK_INT_FRAME_MARKER(r1)		/* "regs" marker */
+	stw	r11,STACK_INT_FRAME_MARKER(r1)		/* "regs" marker */
 	/* Calling convention has r3 = regs, r4 = orig r0 */
 	addi	r3,r1,STACK_INT_FRAME_REGS
 	mr	r4,r0
@@ -655,7 +655,7 @@ ALT_FTR_SECTION_END_IFCLR(CPU_FTR_STCX_CHECKS_ADDRESS)
 	 * Leaving a stale STACK_FRAME_REGS_MARKER on the stack can confuse
 	 * the reliable stack unwinder later on. Clear it.
 	 */
-	std	r0,STACK_INT_FRAME_MARKER(r1)
+	stw	r0,STACK_INT_FRAME_MARKER(r1)
 
 	REST_GPRS(2, 5, r1)
 

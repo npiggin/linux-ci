@@ -163,7 +163,6 @@ struct pt_regs
 #endif /* __powerpc64__ */
 
 #define STACK_INT_FRAME_SIZE	(KERNEL_REDZONE_SIZE + STACK_USER_INT_FRAME_SIZE)
-#define STACK_INT_FRAME_MARKER_LONGS	(STACK_INT_FRAME_MARKER/sizeof(long))
 
 #ifndef __ASSEMBLY__
 #include <asm/paca.h>
